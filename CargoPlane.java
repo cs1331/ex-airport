@@ -1,6 +1,6 @@
 public class CargoPlane implements Airplane {
 
-    private static final float payPerPoundCargo = 1.50f;
+    private static final float CARGO_REVENUE = 1.50f;
 
     private float poundsCargo;
 
@@ -12,7 +12,7 @@ public class CargoPlane implements Airplane {
 
     @Override
     public float getProfitFromFlying() {
-        return poundsCargo * payPerPoundCargo;
+        return poundsCargo * CARGO_REVENUE;
     }
 
 

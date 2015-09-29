@@ -15,10 +15,12 @@ public class Airport {
 
         float profit;
         profit = dobbins.clearMostProfitablePlanes(2);
-        System.out.println("Earned $" + profit + " for clearing the 2 most profitable planes.");
+        System.out.println("Earned $" + profit
+                + " for clearing the 2 most profitable planes.");
 
         profit = dobbins.clearAllPlanes();
-        System.out.println("Earned $" + profit + " for clearing the rest of the planes.");
+        System.out.println("Earned $" + profit
+                + " for clearing the rest of the planes.");
     }
 
 
@@ -39,7 +41,8 @@ public class Airport {
             System.out.println("A " + o + " takes off!");
 
             Airplane plane = (Airplane) o;
-            profit += plane.getProfitFromFlying() - plane.getFuelUsedPerFlight();
+            profit += plane.getProfitFromFlying()
+                - plane.getFuelUsedPerFlight();
         }
         planesWaitingToTakeOff.clear();
 
@@ -48,14 +51,16 @@ public class Airport {
 
 
     public float clearMostProfitablePlanes(int numToClear) {
-        if (numToClear >= planesWaitingToTakeOff.size())
+        if (numToClear >= planesWaitingToTakeOff.size()) {
             return clearAllPlanes();
+        }
 
         Airplane[] mostProfitablePlanes = new Airplane[numToClear];
 
         for (Object o: planesWaitingToTakeOff) {
             Airplane plane = (Airplane) o;
-            float profit = plane.getProfitFromFlying() - plane.getFuelUsedPerFlight();
+            float profit = plane.getProfitFromFlying()
+                - plane.getFuelUsedPerFlight();
 
             boolean done = false;
             for (int i = 0; i < numToClear && !done; ++i) {
@@ -65,7 +70,7 @@ public class Airport {
 
                     mostProfitablePlanes[i] = plane;
                     done = true;
-                    }
+                }
             }
         }
 
@@ -73,7 +78,8 @@ public class Airport {
         for (Airplane plane: mostProfitablePlanes) {
             planesWaitingToTakeOff.remove(plane);
             System.out.println("A " + plane + " takes off!");
-            profit += plane.getProfitFromFlying() - plane.getFuelUsedPerFlight();
+            profit += plane.getProfitFromFlying()
+                - plane.getFuelUsedPerFlight();
         }
         return profit;
     }
