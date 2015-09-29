@@ -9,13 +9,13 @@ public class JetFighter implements Airplane {
 
 
     @Override
-    public float getProfitFromFlying() {
+    public float getProfit() {
         return 1000f; // fixed fee the gov't pays us
     }
 
 
     @Override
-    public float getFuelUsedPerFlight() {
+    public float getFuelUsed() {
         float fuelUsed;
         if (isSuperSonic) {
             fuelUsed = 300f;

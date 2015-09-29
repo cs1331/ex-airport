@@ -11,13 +11,13 @@ public class Airliner implements Airplane {
 
 
     @Override
-    public float getProfitFromFlying() {
+    public float getProfit() {
         return numPassengers * ticketPrice;
     }
 
 
     @Override
-    public float getFuelUsedPerFlight() {
+    public float getFuelUsed() {
         return 100f + 0.5f * numPassengers;
     }
 

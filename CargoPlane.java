@@ -11,13 +11,13 @@ public class CargoPlane implements Airplane {
 
 
     @Override
-    public float getProfitFromFlying() {
+    public float getProfit() {
         return poundsCargo * CARGO_REVENUE;
     }
 
 
     @Override
-    public float getFuelUsedPerFlight() {
+    public float getFuelUsed() {
         return 85f + 0.1f * poundsCargo;
     }
 

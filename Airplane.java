@@ -1,6 +1,6 @@
 public interface Airplane {
 
-    float getProfitFromFlying();
+    float getProfit();
 
-    float getFuelUsedPerFlight();
+    float getFuelUsed();
 }

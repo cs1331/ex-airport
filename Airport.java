@@ -2,7 +2,7 @@ import java.util.ArrayList;
 
 public class Airport {
 
-    private ArrayList planesWaitingToTakeOff;
+    private ArrayList waitingPlanes;
 
 
     public static void main(String[] args) {
@@ -25,61 +25,59 @@ public class Airport {
 
 
     public Airport() {
-        planesWaitingToTakeOff = new ArrayList();
+        waitingPlanes = new ArrayList();
     }
 
 
     public void requestTakeOff(Airplane plane) {
-        planesWaitingToTakeOff.add(plane);
+        waitingPlanes.add(plane);
     }
 
 
     public float clearAllPlanes() {
         float profit = 0;
 
-        for (Object o: planesWaitingToTakeOff) {
+        for (Object o: waitingPlanes) {
             System.out.println("A " + o + " takes off!");
 
             Airplane plane = (Airplane) o;
-            profit += plane.getProfitFromFlying()
-                - plane.getFuelUsedPerFlight();
+            profit += plane.getProfit() - plane.getFuelUsed();
         }
-        planesWaitingToTakeOff.clear();
+        waitingPlanes.clear();
 
         return profit;
     }
 
 
     public float clearMostProfitablePlanes(int numToClear) {
-        if (numToClear >= planesWaitingToTakeOff.size()) {
+        if (numToClear >= waitingPlanes.size()) {
             return clearAllPlanes();
         }
 
-        Airplane[] mostProfitablePlanes = new Airplane[numToClear];
+        Airplane[] profitablePlanes = new Airplane[numToClear];
 
-        for (Object o: planesWaitingToTakeOff) {
+        for (Object o: waitingPlanes) {
             Airplane plane = (Airplane) o;
-            float profit = plane.getProfitFromFlying()
-                - plane.getFuelUsedPerFlight();
+            float profit = plane.getProfit() - plane.getFuelUsed();
 
             boolean done = false;
             for (int i = 0; i < numToClear && !done; ++i) {
-                if (mostProfitablePlanes[i] == null
-                    || profit > mostProfitablePlanes[i].getProfitFromFlying()
-                        - mostProfitablePlanes[i].getFuelUsedPerFlight()) {
+                if (profitablePlanes[i] == null
+                    || profit > profitablePlanes[i].getProfit()
+                        - profitablePlanes[i].getFuelUsed()) {
 
-                    mostProfitablePlanes[i] = plane;
+                    profitablePlanes[i] = plane;
                     done = true;
                 }
             }
         }
 
         float profit = 0;
-        for (Airplane plane: mostProfitablePlanes) {
-            planesWaitingToTakeOff.remove(plane);
+        for (Airplane plane: profitablePlanes) {
+            waitingPlanes.remove(plane);
             System.out.println("A " + plane + " takes off!");
-            profit += plane.getProfitFromFlying()
-                - plane.getFuelUsedPerFlight();
+            profit += plane.getProfit()
+                - plane.getFuelUsed();
         }
         return profit;
     }
